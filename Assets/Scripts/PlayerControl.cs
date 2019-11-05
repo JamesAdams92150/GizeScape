@@ -11,8 +11,8 @@ public class PlayerControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // turn off the cursor
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
