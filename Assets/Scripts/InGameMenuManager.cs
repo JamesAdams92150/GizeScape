@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class InGameMenuManager : MonoBehaviour
 {
@@ -34,6 +36,15 @@ public class InGameMenuManager : MonoBehaviour
             SetPauseMenuActivation(!menuRoot.activeSelf);
 
         }
+        if (EventSystem.current.currentSelectedGameObject == null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+    }
+
+    public void titleReturn()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void ClosePauseMenu()
@@ -52,7 +63,7 @@ public class InGameMenuManager : MonoBehaviour
             Time.timeScale = 0f;
            // AudioUtility.SetMasterVolume(volumeWhenMenuOpen);
 
-            //EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(null);
         }
         else
         {
