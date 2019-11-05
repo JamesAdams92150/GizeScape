@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float speed = 10.0f;
-    private float translation;
-    private float straffe;
+    private float vertical;
+    private float horizontal;
 
     // Use this for initialization
     void Start()
@@ -20,9 +20,9 @@ public class PlayerControl : MonoBehaviour
     {
         // Input.GetAxis() is used to get the user's input
         // You can furthor set it on Unity. (Edit, Project Settings, Input)
-        translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        transform.Translate(straffe, 0, translation);
+        vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        transform.Translate(horizontal, 0, vertical);
 
         if (Input.GetKeyDown("escape"))
         {

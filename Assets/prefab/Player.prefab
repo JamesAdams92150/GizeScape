@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3dee24a3663454f842a381d1f273c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 5
-  smoothing: 2
+  sensitivity: 0.6
+  smoothing: 1
   character: {fileID: 0}
 --- !u!1 &7301541468177516525
 GameObject:

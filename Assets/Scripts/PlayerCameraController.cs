@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField]
     public float sensitivity = 5.0f;
-    [SerializeField]
-    public float smoothing = 2.0f;
+    public float smoothing = 1.0f;
     // the chacter is the capsule
     public GameObject character;
     // get the incremental value of mouse moving
@@ -25,7 +22,7 @@ public class PlayerCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // md is mosue delta
+        // md is mouse delta
         var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
         // the interpolated float result between the two float values
