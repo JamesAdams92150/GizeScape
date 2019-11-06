@@ -144,7 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daeb464b8559f4045b44a61a3bd346ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSharpnessOnGround: 15
+  gravityDownForce: 20
+  groundCheckLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  groundCheckDistance: 0.05
   speed: 10
+  jumpSpeed: 8
+  cameraHeightRatio: 0.9
+  capsuleHeightStanding: 1.8
+  capsuleHeightCrouching: 0.9
+  crouchingSharpness: 10
+  playerCamera: {fileID: 7301541468048263315}
 --- !u!143 &7301541468177516515
 CharacterController:
   m_ObjectHideFlags: 0
@@ -160,8 +172,8 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_SkinWidth: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7301541468489640806
 GameObject:
@@ -174,7 +186,6 @@ GameObject:
   - component: {fileID: 7301541468489640805}
   - component: {fileID: 7301541468489640794}
   - component: {fileID: 7301541468489640795}
-  - component: {fileID: 7301541468489640804}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -241,17 +252,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7301541468489640804
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7301541468489640806}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
