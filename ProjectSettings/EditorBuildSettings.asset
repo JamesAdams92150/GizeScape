@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Scene.unity
     guid: 88d656674739c8046abf208288598cc8
+  - enabled: 1
+    path: Assets/Decrepit Dungeon LITE/EXAMPLE/Demo_Scene.unity
+    guid: 14a2c64dbd956d346b9f674d144cc297
+  - enabled: 1
+    path: Assets/Scenes/1ere salle.unity
+    guid: 4c888d345f080d64bb24601edf0ce30d
+  - enabled: 1
+    path: Assets/Scenes/2eme salle.unity
+    guid: 6e5830c7e55b6b94594f52b33d07cd07
+  - enabled: 1
+    path: Assets/Scenes/3eme salle.unity
+    guid: cbf14e4c34f093144a0f6e2aaa0ef069
   m_configObjects: {}

@@ -8,6 +8,10 @@ public class PlayerControl : MonoBehaviour
     [Header("Movement")]
     [Tooltip("Sharpness for the movement when grounded, a low value will make the player accelerate and decelerate slowly, a high value will do the opposite")]
     public float movementSharpnessOnGround = 15;
+    [Tooltip("Acceleration speed when in the air")]
+    public float accelerationSpeedInAir = 25f;
+    [Tooltip("Max movement speed when not grounded")]
+    public float maxSpeedInAir = 10f;
 
     [Header("General")]
     [Tooltip("Force applied downward when in the air")]
@@ -15,9 +19,14 @@ public class PlayerControl : MonoBehaviour
     [Tooltip("Physic layers checked to consider the player grounded")]
     public LayerMask groundCheckLayers = -1;
     [Tooltip("distance from the bottom of the character controller capsule to test for grounded")]
+    
     public float groundCheckDistance = 0.05f;
     public float speed = 10.0f;
     public float jumpSpeed = 8.0f;
+
+    [Header("Jump")]
+    [Tooltip("Force applied upward when jumping")]
+    public float jumpForce = 9f;
 
     [Header("Stance")]
     [Tooltip("Ratio (0-1) of the character height where the camera will be at")]
@@ -38,11 +47,13 @@ public class PlayerControl : MonoBehaviour
     float m_TargetCharacterHeight;
     float m_CameraVerticalAngle = 0f;
     float maxSpeedCrouchedRatio = 0.5f;
+    float m_LastTimeJumped = 0f;
     private float vertical;
     private float horizontal;
 
     public bool isCrouching { get; private set; }
     public bool isGrounded { get; private set; }
+    public bool hasJumpedThisFrame { get; private set; }
 
     // Use this for initialization
     void Start()
@@ -114,17 +125,39 @@ public class PlayerControl : MonoBehaviour
             {
                 velocity = worldVelocity * maxSpeedCrouchedRatio;
             }
+
             characterMove = velocity;
+
+            if (isGrounded && Input.GetButtonDown("Jump"))
+            {
+                // force the crouch state to false
+                if (SetCrouchingState(false, false))
+                {
+                    // start by canceling out the vertical component of our velocity
+                    characterMove = new Vector3(characterMove.x, 0f, characterMove.z);
+
+                    // then, add the jumpSpeed value upwards
+                    characterMove += Vector3.up * jumpForce;
+
+                    // remember last time we jumped because we need to prevent snapping to ground for a short time
+                    m_LastTimeJumped = Time.time;
+                    hasJumpedThisFrame = true;
+
+                    // Force grounding to false
+                    isGrounded = false;
+                    m_GroundNormal = Vector3.up;
+                }
+            }
         }
         else
         {
             // add air acceleration
-            // velocity += worldVelocity * accelerationSpeedInAir * Time.deltaTime;
+            characterMove += worldVelocity * accelerationSpeedInAir * Time.deltaTime;
 
             // limit air speed to a maximum, but only horizontally
             float verticalVelocity = characterMove.y;
             Vector3 horizontalVelocity = Vector3.ProjectOnPlane(characterMove, Vector3.up);
-            horizontalVelocity = Vector3.ClampMagnitude(horizontalVelocity, 1f);
+            horizontalVelocity = Vector3.ClampMagnitude(horizontalVelocity, maxSpeedInAir * 1f);
             characterMove = horizontalVelocity + (Vector3.up * verticalVelocity);
 
             // apply the gravity to the velocity
@@ -188,7 +221,7 @@ public class PlayerControl : MonoBehaviour
         m_GroundNormal = Vector3.up;
 
         // only try to detect ground if it's been a short amount of time since last jump; otherwise we may snap to the ground instantly after we try jumping
-        if (Time.time >= 0f + 0.02f)
+        if (Time.time >= m_LastTimeJumped + 0.2f)
         {
             // if we're grounded, collect info about the ground normal with a downward capsule cast representing our character capsule
             if (Physics.CapsuleCast(GetCapsuleBottomHemisphere(), GetCapsuleTopHemisphere(m_Controller.height), m_Controller.radius, Vector3.down, out RaycastHit hit, chosenGroundCheckDistance, groundCheckLayers, QueryTriggerInteraction.Ignore))
