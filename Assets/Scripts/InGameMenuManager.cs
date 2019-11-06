@@ -36,10 +36,6 @@ public class InGameMenuManager : MonoBehaviour
             SetPauseMenuActivation(!menuRoot.activeSelf);
 
         }
-        if (EventSystem.current.currentSelectedGameObject == null)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-        }
     }
 
     public void titleReturn()
@@ -61,8 +57,6 @@ public class InGameMenuManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0f;
-
-            EventSystem.current.SetSelectedGameObject(null);
         }
         else
         {

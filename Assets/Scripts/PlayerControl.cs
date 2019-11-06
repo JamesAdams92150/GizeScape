@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     public LayerMask groundCheckLayers = -1;
     [Tooltip("distance from the bottom of the character controller capsule to test for grounded")]
     public float groundCheckDistance = 0.05f;
-    public float speed = 6.0f;
+    public float speed = 10.0f;
     public float jumpSpeed = 8.0f;
 
     [Header("Stance")]
@@ -37,7 +37,7 @@ public class PlayerControl : MonoBehaviour
     Vector3 m_GroundNormal;
     float m_TargetCharacterHeight;
     float m_CameraVerticalAngle = 0f;
-    float maxSpeedCrouchedRatio = 0.7f;
+    float maxSpeedCrouchedRatio = 0.5f;
     private float vertical;
     private float horizontal;
 
@@ -81,19 +81,25 @@ public class PlayerControl : MonoBehaviour
     {
         // horizontal character rotation
         {
-            // rotate the transform with the input speed around its local Y axis
-            transform.Rotate(new Vector3(0f, (Input.GetAxisRaw("Mouse X")), 0f), Space.Self);
+            if (CanProcessInput())
+            {
+                // rotate the transform with the input speed around its local Y axis
+                transform.Rotate(new Vector3(0f, (Input.GetAxisRaw("Mouse X")), 0f), Space.Self);
+            }
         }
         // vertical camera rotation
         {
-            // add vertical inputs to the camera's vertical angle
-            m_CameraVerticalAngle += Input.GetAxisRaw("Mouse Y") * -1f;
+            if (CanProcessInput())
+            {
+                // add vertical inputs to the camera's vertical angle
+                m_CameraVerticalAngle += Input.GetAxisRaw("Mouse Y") * -1f;
 
-            // limit the camera's vertical angle to min/max
-            m_CameraVerticalAngle = Mathf.Clamp(m_CameraVerticalAngle, -89f, 89f);
+                // limit the camera's vertical angle to min/max
+                m_CameraVerticalAngle = Mathf.Clamp(m_CameraVerticalAngle, -89f, 89f);
 
-            // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
-            playerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
+                // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
+                playerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);
+            }
         }
 
         vertical = Input.GetAxis("Vertical");
