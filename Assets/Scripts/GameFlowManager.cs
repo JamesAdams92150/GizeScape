@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameFlowManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    string m_sceneToLoad;
     void Start()
-    { 
+    {
         
     }
 

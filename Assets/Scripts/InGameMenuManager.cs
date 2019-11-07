@@ -8,6 +8,7 @@ public class InGameMenuManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject menuRoot;
+    public GameObject controlImage;
 
     void Start()
     {
@@ -32,7 +33,11 @@ public class InGameMenuManager : MonoBehaviour
         if (Input.GetButtonDown("Pause Menu")
            || (menuRoot.activeSelf && Input.GetButtonDown("Cancel")))
         {
-
+            if (controlImage.activeSelf)
+            {
+                controlImage.SetActive(false);
+                return;
+            }
             SetPauseMenuActivation(!menuRoot.activeSelf);
 
         }
@@ -46,6 +51,11 @@ public class InGameMenuManager : MonoBehaviour
     public void ClosePauseMenu()
     {
         SetPauseMenuActivation(false);
+    }
+
+    public void OnShowControlButtonClicked(bool show)
+    {
+        controlImage.SetActive(show);
     }
 
     void SetPauseMenuActivation(bool active)

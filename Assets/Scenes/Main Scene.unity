@@ -658,8 +658,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047500588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6677585, y: 1.2193613, z: 13.63731}
-  m_LocalScale: {x: 6.138881, y: 2.5966291, z: 0.1604048}
+  m_LocalPosition: {x: 3.6677585, y: 0.82, z: 13.63731}
+  m_LocalScale: {x: 6.138881, y: 1.5799968, z: 0.1604048}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -729,30 +729,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6568872940882747964, guid: 0e86637829e260744882789194df0834,
+    - target: {fileID: 6489495027661067715, guid: 0e86637829e260744882789194df0834,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 375
-      objectReference: {fileID: 0}
-    - target: {fileID: 6568872940882747964, guid: 0e86637829e260744882789194df0834,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -74
-      objectReference: {fileID: 0}
-    - target: {fileID: 6494540376550669341, guid: 0e86637829e260744882789194df0834,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2027629037898109871, guid: 0e86637829e260744882789194df0834,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -375
-      objectReference: {fileID: 0}
-    - target: {fileID: 2027629037898109871, guid: 0e86637829e260744882789194df0834,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -74
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2963376871207052224, guid: 0e86637829e260744882789194df0834,
         type: 3}
@@ -822,12 +802,22 @@ PrefabInstance:
     - target: {fileID: 2963376871007516344, guid: 0e86637829e260744882789194df0834,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2963376871007516347, guid: 0e86637829e260744882789194df0834,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185150713098661261, guid: 0e86637829e260744882789194df0834,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185150713098661261, guid: 0e86637829e260744882789194df0834,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e86637829e260744882789194df0834, type: 3}
